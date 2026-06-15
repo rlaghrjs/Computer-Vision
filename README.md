@@ -142,96 +142,6 @@ Variable Size
 
 ---
 
-# CWGAN-GP
-
-## Purpose
-
-결함 클래스 간 데이터 불균형을 완화하기 위해 CWGAN-GP를 활용하여 합성 웨이퍼 데이터를 생성하였다.
-
-## Generator Input
-
-```text
-Noise Vector (100)
-+
-Class Label
-```
-
-## Generator Output
-
-```text
-Synthetic Wafer Map
-```
-
-## Critic Loss
-
-```math
-Loss = E[D(fake)] - E[D(real)] + λGP
-```
-
-## Hyperparameters
-
-| Parameter          | Value  |
-| ------------------ | ------ |
-| Epochs             | 200    |
-| Batch Size         | 64     |
-| Learning Rate      | 0.0001 |
-| Latent Dimension   | 100    |
-| N Critic           | 5      |
-| Gradient Penalty λ | 10     |
-
----
-
-# CNN Classifier
-
-## Architecture
-
-```text
-Input (3×64×64)
-
-↓
-Conv(32)
-↓
-Conv(32)
-↓
-MaxPool
-
-↓
-Conv(64)
-↓
-Conv(64)
-↓
-MaxPool
-
-↓
-Conv(128)
-↓
-MaxPool
-
-↓
-Flatten
-
-↓
-FC(256)
-
-↓
-FC(128)
-
-↓
-FC(9)
-```
-
-## Training Configuration
-
-| Parameter     | Value            |
-| ------------- | ---------------- |
-| Loss Function | CrossEntropyLoss |
-| Optimizer     | Adam             |
-| Learning Rate | 0.001            |
-| Batch Size    | 32               |
-| Epochs        | 100              |
-
----
-
 # Evaluation Metrics
 
 본 연구에서는 다음 지표를 사용하여 성능을 평가하였다.
@@ -241,7 +151,6 @@ FC(9)
 * Recall
 * F1-Score
 * Macro F1-Score
-* Confusion Matrix
 * Inference Time
 * FPS
 
@@ -282,13 +191,6 @@ matplotlib
 seaborn
 ```
 
-설치:
-
-```bash
-pip install -r requirements.txt
-```
-
----
 
 # Run
 
@@ -317,11 +219,3 @@ python eval.py
 ```
 
 ---
-
-# Author
-
-Kim Ho Geon
-
-Department of Computer Information Engineering
-Inha Technical College
-
