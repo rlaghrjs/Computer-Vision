@@ -14,7 +14,7 @@ def evaluate_and_measure_time():
     
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
-    test_dataset = WaferDataset(pkl_path=PKL_PATH, img_size=64, is_train=False)
+    test_dataset = WaferDataset(pkl_path=PKL_PATH, img_size=64, split='test')
     test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
     
     model = DeepWaferCNN(num_classes=9).to(device)

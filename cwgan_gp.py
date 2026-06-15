@@ -1,6 +1,6 @@
-# cwgan_gp.py
 import torch
 import torch.nn as nn
+
 
 class Generator(nn.Module):
     def __init__(self, latent_dim=100, num_classes=9, img_size=64):
@@ -23,9 +23,7 @@ class Generator(nn.Module):
             nn.BatchNorm2d(64, 0.8),
             nn.LeakyReLU(0.2, inplace=True),
             
-            # 최종 출력 채널 3 (One-Hot 웨이퍼 맵)
             nn.Conv2d(64, 3, 3, stride=1, padding=1),
-            # 각 픽셀이 0, 1, 2 중 하나가 될 확률을 나타내도록 Softmax 적용
             nn.Softmax(dim=1) 
         )
 
@@ -37,13 +35,12 @@ class Generator(nn.Module):
         img = self.conv_blocks(out)
         return img
 
-class Critic(nn.Module): # WGAN에서는 Discriminator 대신 Critic이라 부름
+class Critic(nn.Module):
     def __init__(self, num_classes=9, img_size=64):
         super(Critic, self).__init__()
         self.label_emb = nn.Embedding(num_classes, num_classes)
         
         self.model = nn.Sequential(
-            # 입력: 이미지 채널(3) + 라벨 채널(num_classes를 채널로 변환)
             nn.Conv2d(3 + num_classes, 64, 3, stride=2, padding=1),
             nn.LeakyReLU(0.2, inplace=True),
             nn.Conv2d(64, 128, 3, stride=2, padding=1),
@@ -53,7 +50,6 @@ class Critic(nn.Module): # WGAN에서는 Discriminator 대신 Critic이라 부�
             nn.Conv2d(256, 512, 3, stride=2, padding=1),
             nn.LeakyReLU(0.2, inplace=True),
         )
-        # WGAN은 마지막에 Sigmoid를 쓰지 않고 선형 출력(Linear)을 사용함
         self.adv_layer = nn.Linear(512 * (img_size // 16) ** 2, 1)
 
     def forward(self, img, labels):
