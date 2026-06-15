@@ -82,34 +82,6 @@ eval.py
 
 ---
 
-# Workflow
-
-```text
-Dataset
-   │
-   ▼
-Preprocessing
-   │
-   ▼
-CWGAN-GP
-(Data Generation)
-   │
-   ▼
-Synthetic Dataset
-   │
-   ▼
-Real + Synthetic Dataset
-   │
-   ▼
-Deep CNN
-(Classification)
-   │
-   ▼
-Evaluation
-```
-
----
-
 # Preprocessing
 
 ## Image Resize
