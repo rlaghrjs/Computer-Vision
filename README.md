@@ -114,42 +114,6 @@ Variable Size
 
 ---
 
-# Evaluation Metrics
-
-본 연구에서는 다음 지표를 사용하여 성능을 평가하였다.
-
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-* Macro F1-Score
-* Inference Time
-* FPS
-
----
-
-# Experimental Result
-
-## Class-wise F1 Score
-
-| Class     | F1 Score |
-| --------- | -------- |
-| None      | 0.98     |
-| Center    | 0.63     |
-| Donut     | 0.72     |
-| Edge-Ring | 0.76     |
-| Edge-Loc  | 0.64     |
-| Loc       | 0.71     |
-| Random    | 0.65     |
-| Scratch   | 0.74     |
-| Near-full | 0.77     |
-
-### Macro F1 Score
-
-**0.7333**
-
----
-
 # Requirements
 
 ```bash
